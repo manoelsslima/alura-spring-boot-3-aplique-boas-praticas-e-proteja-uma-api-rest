@@ -1,5 +1,5 @@
 .env
-application.properties
+#application.properties
 logs
 
 HELP.md
