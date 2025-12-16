@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import med.voll.api.paciente.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,5 +41,11 @@ public class PacienteController {
     public void excluir(@PathVariable Long id) {
         var paciente = repository.getReferenceById(id);
         paciente.inativar();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoPaciente> detalhar(@PathVariable Long id) {
+        var paciente = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
     }
 }
